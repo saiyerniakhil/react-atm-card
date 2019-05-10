@@ -1,12 +1,61 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+let cardDetails = {
+    bankName: 'Big Bank, Inc.',
+    cardNumber: '1234 5678 8765 4321',
+    cardHolder: 'madabattula sai yerni akhil',
+    validThru: '08/2024'
+}
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+function Card({card}) {
+    return(
+        <div>
+            <div className="card-div">
+                <div className="bank-name"><Bank bank={card.bankName}/> </div>
+                <div className='card-number'> <CardNumber number={card.cardNumber}/> </div>
+                <Validity valid={card.validThru}/>
+                <br/>
+                <Customer name={card.cardHolder}/>
+            </div>
+        </div>
+    )
+}
+
+let Customer = ({name}) => {
+    return (
+        <div>
+            <h2>{name.toUpperCase()}</h2>
+        </div>    
+    )
+}
+
+let Validity = ({valid}) => {
+    return (
+        <div>
+            <div className='valid-date'>
+                <div className='valid-thru'> <p>VALID THRU</p> </div>
+                <div className='date'>{valid}</div>
+            </div>
+        </div>
+    )
+}
+
+let Bank = ({bank}) => {
+    return (
+        <div>
+            <h1>{bank}</h1>
+        </div>
+    )
+}
+
+let CardNumber = ({number}) => {
+    return(
+        <div>
+            <h1>{number}</h1>
+        </div>
+    )
+}
+
+ReactDOM.render(<Card card={cardDetails}/>, document.getElementById('root'));
